@@ -219,7 +219,7 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
             <button
               onClick={handleProcessPayment}
               disabled={isProcessing}
-              className="w-full py-3 rounded-xl bg-[#16A34A] hover:bg-[#15803d] text-white font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer transition-all disabled:opacity-50 shadow-xs"
+              className="w-full py-3 btn-3d btn-3d-success text-xs font-semibold flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {isProcessing ? (
                 <span>Authorizing Mock Transaction...</span>

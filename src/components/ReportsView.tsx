@@ -84,7 +84,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ violations }) => {
         <div className="flex items-center gap-3">
           <button
             onClick={handleExportCSV}
-            className="px-3.5 py-2 rounded-lg bg-[#16A34A] hover:bg-[#15803d] text-white font-semibold text-xs flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
+            className="btn-3d btn-3d-success px-3.5 py-2 text-xs font-semibold flex items-center gap-1.5"
           >
             <Download className="w-4 h-4" />
             <span>Export CSV Dataset</span>
@@ -92,7 +92,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ violations }) => {
 
           <button
             onClick={() => setShowPrintModal(true)}
-            className="px-3.5 py-2 rounded-lg bg-white hover:bg-slate-50 text-[#172033] font-semibold text-xs flex items-center gap-1.5 transition-colors cursor-pointer border border-[#D9E1EA] shadow-2xs"
+            className="btn-3d btn-3d-secondary px-3.5 py-2 text-xs font-semibold flex items-center gap-1.5"
           >
             <Printer className="w-4 h-4 text-[#1677FF]" />
             <span>Generate Printable PDF</span>

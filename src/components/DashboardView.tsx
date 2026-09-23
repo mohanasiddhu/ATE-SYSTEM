@@ -439,7 +439,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             {/* Section 8: [Open Full Monitor] button (Blue primary button) */}
             <button
               onClick={() => onNavigateTab('live-monitoring')}
-              className="mt-3.5 w-full h-[40px] rounded-lg bg-[#1677FF] hover:bg-[#0958d9] text-white text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+              className="mt-3.5 w-full h-[40px] btn-3d btn-3d-primary text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer"
             >
               <Zap className="w-4 h-4" />
               <span>Open Full Monitor</span>
@@ -594,7 +594,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         e.stopPropagation();
                         onReviewViolation(v);
                       }}
-                      className="px-3 py-1.5 rounded-lg bg-white hover:bg-blue-50 text-[#1677FF] border border-[#1677FF] text-xs font-semibold transition-colors cursor-pointer"
+                      className="btn-3d btn-3d-secondary text-xs px-3 py-1 font-semibold"
                     >
                       Review
                     </button>
@@ -662,7 +662,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <div className="p-4 border-t border-[#E5EAF0] flex items-center justify-between bg-[#F8FAFC]">
               <button
                 onClick={() => setQuickInspectViolation(null)}
-                className="px-4 py-2 rounded-lg bg-white border border-[#D9E1EA] hover:bg-slate-100 text-[#475569] text-xs font-semibold transition-colors cursor-pointer"
+                className="btn-3d btn-3d-secondary px-4 py-2 text-xs font-semibold"
               >
                 Close Drawer
               </button>
@@ -672,7 +672,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   setQuickInspectViolation(null);
                   onReviewViolation(target);
                 }}
-                className="px-4 py-2 rounded-lg bg-[#1677FF] hover:bg-[#0958d9] text-white font-semibold text-xs transition-colors shadow-xs cursor-pointer"
+                className="btn-3d btn-3d-primary px-4 py-2 text-xs font-semibold"
               >
                 Open Full Review Tool →
               </button>

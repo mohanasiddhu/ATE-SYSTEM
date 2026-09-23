@@ -130,18 +130,38 @@ export const TopBar: React.FC<TopBarProps> = ({
         </div>
 
         {/* System status: ● All Systems Operational (green) */}
-        <div className="hidden lg:flex items-center gap-2 text-xs font-semibold text-[#16A34A] bg-[#DCFCE7]/60 px-3 py-1.5 rounded-full border border-[#BBF7D0]">
+        <div className="hidden xl:flex items-center gap-2 text-xs font-semibold text-[#16A34A] bg-[#DCFCE7]/60 px-3 py-1.5 rounded-full border border-[#BBF7D0]">
           <span className="w-2 h-2 rounded-full bg-[#16A34A]" />
           <span>All Systems Operational</span>
+        </div>
+
+        {/* 3D Quick Action Buttons */}
+        <div className="hidden sm:flex items-center gap-2">
+          <button
+            onClick={onLaunchPresentation}
+            className="btn-3d btn-3d-secondary px-3 py-1.5 text-xs font-semibold flex items-center gap-1.5"
+            title="Interactive Step-by-Step Walkthrough"
+          >
+            <Play className="w-3 h-3 text-[#F59E0B]" />
+            <span>Walkthrough</span>
+          </button>
+          <button
+            onClick={onOpenPythonCode}
+            className="btn-3d btn-3d-primary px-3 py-1.5 text-xs font-semibold flex items-center gap-1.5"
+            title="Inspect YOLOv8 + EasyOCR Python Engine"
+          >
+            <Code className="w-3.5 h-3.5" />
+            <span>Python Code</span>
+          </button>
         </div>
 
         {/* Notifications Icon Button */}
         <button
           onClick={onOpenAlerts}
-          className="relative p-2 rounded-lg text-[#64748B] hover:text-[#172033] hover:bg-slate-100 transition-colors"
+          className="relative btn-3d-icon w-9 h-9 text-[#64748B] hover:text-[#172033]"
           title="Alerts & Notifications"
         >
-          <Bell className="w-5 h-5" />
+          <Bell className="w-4 h-4" />
           {unreadAlertsCount > 0 && (
             <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#EF4444] ring-2 ring-white" />
           )}

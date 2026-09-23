@@ -113,7 +113,7 @@ export const CamerasView: React.FC<CamerasViewProps> = ({
 
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#1677FF] hover:bg-[#0958d9] text-white font-semibold text-xs shadow-xs transition-colors cursor-pointer"
+            className="btn-3d btn-3d-primary px-3.5 py-1.5 text-xs font-semibold flex items-center gap-1.5"
           >
             <Plus className="w-4 h-4" />
             <span>Add Camera Node</span>
@@ -345,7 +345,7 @@ export const CamerasView: React.FC<CamerasViewProps> = ({
             <div className="pt-3 border-t border-[#E5EAF0] flex justify-end gap-2 text-xs">
               <button
                 onClick={() => setSelectedCamForConfig(null)}
-                className="px-3.5 py-2 bg-white border border-[#D9E1EA] text-[#64748B] rounded-lg cursor-pointer"
+                className="btn-3d btn-3d-secondary px-3.5 py-2 text-xs font-semibold"
               >
                 Cancel
               </button>
@@ -354,7 +354,7 @@ export const CamerasView: React.FC<CamerasViewProps> = ({
                   onUpdateCamera(selectedCamForConfig);
                   setSelectedCamForConfig(null);
                 }}
-                className="px-4 py-2 bg-[#1677FF] hover:bg-[#0958d9] text-white font-semibold rounded-lg cursor-pointer shadow-xs"
+                className="btn-3d btn-3d-primary px-4 py-2 text-xs font-semibold"
               >
                 Save Calibration
               </button>

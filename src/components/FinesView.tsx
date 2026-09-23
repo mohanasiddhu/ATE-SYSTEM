@@ -165,7 +165,7 @@ export const FinesView: React.FC<FinesViewProps> = ({ fines, onOpenPaymentModal 
                     {f.status === 'UNPAID' ? (
                       <button
                         onClick={() => onOpenPaymentModal(f)}
-                        className="px-3.5 py-1.5 rounded-lg bg-[#16A34A] hover:bg-[#15803d] text-white font-semibold text-xs shadow-xs cursor-pointer transition-all"
+                        className="btn-3d btn-3d-success px-3.5 py-1.5 text-xs font-semibold"
                       >
                         Pay Demo Fine
                       </button>

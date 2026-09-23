@@ -172,3 +172,28 @@ export interface EvidenceRecord {
   imageUrl: string;
   status: 'PENDING REVIEW' | 'CONFIRMED' | 'REJECTED';
 }
+
+export interface ModelTrainingConfig {
+  dataset: string;
+  backbone: 'yolov8n' | 'yolov8s' | 'yolov8m';
+  epochs: number;
+  batchSize: number;
+  learningRate: number;
+  imgSize: number;
+  optimizer: 'AdamW' | 'SGD';
+  autoAnchor: boolean;
+}
+
+export interface TrainingProgressState {
+  epoch: number;
+  totalEpochs: number;
+  progress: number;
+  boxLoss: number;
+  clsLoss: number;
+  dflLoss: number;
+  mAP50: number;
+  mAP50_95: number;
+  precision: number;
+  recall: number;
+  status: 'IDLE' | 'TRAINING' | 'COMPLETED';
+}

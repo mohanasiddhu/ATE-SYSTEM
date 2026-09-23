@@ -195,7 +195,7 @@ export const ViolationsView: React.FC<ViolationsViewProps> = ({
                           e.stopPropagation();
                           onOpenReviewModal(v);
                         }}
-                        className="px-3 py-1.5 rounded-lg bg-white hover:bg-blue-50 text-[#1677FF] border border-[#1677FF] text-xs font-semibold transition-colors cursor-pointer"
+                        className="btn-3d btn-3d-secondary text-xs px-3 py-1 font-semibold"
                       >
                         Review
                       </button>
@@ -405,13 +405,13 @@ export const ViolationsView: React.FC<ViolationsViewProps> = ({
                                 setShowRejectInput(false);
                                 setRejectionReason('');
                               }}
-                              className="flex-1 py-2.5 rounded-lg bg-[#EF4444] hover:bg-[#dc2626] text-white text-xs font-semibold transition-colors cursor-pointer"
+                              className="flex-1 py-2.5 btn-3d btn-3d-danger text-xs font-semibold"
                             >
                               Confirm Rejection
                             </button>
                             <button
                               onClick={() => setShowRejectInput(false)}
-                              className="px-4 py-2.5 rounded-lg bg-white border border-[#D9E1EA] text-[#64748B] text-xs font-semibold hover:bg-slate-100 transition-colors cursor-pointer"
+                              className="px-4 py-2.5 btn-3d btn-3d-secondary text-xs font-semibold"
                             >
                               Cancel
                             </button>
@@ -425,7 +425,7 @@ export const ViolationsView: React.FC<ViolationsViewProps> = ({
                               onReview(selectedForReview.id, 'APPROVE');
                               onCloseReviewModal();
                             }}
-                            className="h-[42px] px-4 rounded-xl bg-[#16A34A] hover:bg-[#15803d] text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-xs cursor-pointer transition-all"
+                            className="h-[42px] px-4 btn-3d btn-3d-success text-xs font-semibold flex items-center justify-center gap-2"
                           >
                             <Check className="w-4 h-4" />
                             <span>Confirm Violation</span>
@@ -434,7 +434,7 @@ export const ViolationsView: React.FC<ViolationsViewProps> = ({
                           {/* Reject (light red / outline) */}
                           <button
                             onClick={() => setShowRejectInput(true)}
-                            className="h-[42px] px-4 rounded-xl bg-white hover:bg-rose-50 text-[#EF4444] border border-[#EF4444] font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer transition-all"
+                            className="h-[42px] px-4 btn-3d btn-3d-danger text-xs font-semibold flex items-center justify-center gap-2"
                           >
                             <X className="w-4 h-4" />
                             <span>Reject</span>

@@ -8,14 +8,28 @@ import {
   Zap,
   Activity,
   Layers,
-  Sparkles
+  Sparkles,
+  Play
 } from 'lucide-react';
+import { ModelTrainingModal } from './ModelTrainingModal';
 
 export const AIModelsView: React.FC = () => {
   const [vehConf, setVehConf] = useState<number>(0.85);
   const [ocrConf, setOcrConf] = useState<number>(0.90);
   const [speedBuffer, setSpeedBuffer] = useState<number>(5);
   const [helmetGate, setHelmetGate] = useState<number>(0.80);
+  const [isTrainingModalOpen, setIsTrainingModalOpen] = useState<boolean>(false);
+  const [isTrained, setIsTrained] = useState<boolean>(false);
+  const [activeModelName, setActiveModelName] = useState<string>('YOLOv8-Nano Baseline');
+  const [activeMapScore, setActiveMapScore] = useState<number>(0.914);
+
+  const handleDeployTrainedModel = (name: string, mapScore: number) => {
+    setIsTrained(true);
+    setActiveModelName(name);
+    setActiveMapScore(mapScore);
+    setVehConf(0.92);
+    setOcrConf(0.95);
+  };
 
   return (
     <div className="space-y-6">
@@ -26,15 +40,34 @@ export const AIModelsView: React.FC = () => {
             Computer Vision Models & Inference Parameters
           </h2>
           <p className="text-xs text-[#64748B]">
-            Model Weights Registry, Confidence Filters & Multi-Stage Optical Pipelines
+            Model Weights Registry, Fine-Tuning Studio, Confidence Filters & Multi-Stage Optical Pipelines
           </p>
         </div>
 
-        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[#16A34A] text-xs font-semibold">
-          <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse" />
-          <span>HYBRID INFERENCE ENGINE ONLINE</span>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsTrainingModalOpen(true)}
+            className={`btn-3d px-4 py-2 text-xs font-semibold flex items-center gap-2 ${
+              isTrained ? 'btn-3d-success' : 'btn-3d-primary'
+            }`}
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>{isTrained ? `Trained: ${activeModelName}` : '⚡ Train & Fine-Tune Model'}</span>
+          </button>
+
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[#16A34A] text-xs font-semibold">
+            <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse" />
+            <span>HYBRID INFERENCE ENGINE ONLINE</span>
+          </div>
         </div>
       </div>
+
+      <ModelTrainingModal
+        isOpen={isTrainingModalOpen}
+        onClose={() => setIsTrainingModalOpen(false)}
+        onDeployTrainedModel={handleDeployTrainedModel}
+        isCurrentlyTrained={isTrained}
+      />
 
       {/* Model Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">

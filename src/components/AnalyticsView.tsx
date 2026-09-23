@@ -103,7 +103,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ violations }) => {
           {/* Export Buttons */}
           <button
             onClick={handleExportCSV}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-[#172033] border border-[#D9E1EA] text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
+            className="btn-3d btn-3d-secondary px-3.5 py-1.5 text-xs font-semibold flex items-center gap-1.5"
           >
             <FileSpreadsheet className="w-3.5 h-3.5 text-[#1677FF]" />
             <span>Export CSV</span>
@@ -111,7 +111,7 @@ export const AnalyticsView: React.FC<AnalyticsViewProps> = ({ violations }) => {
 
           <button
             onClick={handleExportPDF}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#1677FF] hover:bg-[#0958d9] text-white font-semibold text-xs transition-colors shadow-xs cursor-pointer"
+            className="btn-3d btn-3d-primary px-3.5 py-1.5 text-xs font-semibold flex items-center gap-1.5"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export PDF</span>

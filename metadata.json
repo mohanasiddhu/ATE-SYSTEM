@@ -1,0 +1,8 @@
+{
+  "name": "AI-Driven Smart Traffic Enforcement System",
+  "description": "Enterprise-grade AI-powered traffic monitoring, ANPR vehicle tracking, violation detection, and smart city enforcement command center.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

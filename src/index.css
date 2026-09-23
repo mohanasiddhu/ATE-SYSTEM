@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #F5F7FA;
+  --bg-surface: #FFFFFF;
+  --border: #E5EAF0;
+  --text-primary: #172033;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --primary: #1677FF;
+  --primary-hover: #0958d9;
+  --secondary: #3B82F6;
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+}
+
+@layer base {
+  * {
+    border-color: #E5EAF0;
+  }
+  body {
+    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #F5F7FA;
+    color: #172033;
+    overflow-x: hidden;
+  }
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .font-display {
+    font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Custom Scrollbar - Clean Light Theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Light Surface Card Utilities */
+.app-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5EAF0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+.glass-panel {
+  background-color: #FFFFFF;
+  border: 1px solid #E5EAF0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.glass-panel-glow {
+  background-color: #FFFFFF;
+  border: 1px solid #BFDBFE;
+  box-shadow: 0 4px 14px rgba(22, 119, 255, 0.08);
+}
+
+.radar-grid-bg {
+  background-image: 
+    linear-gradient(#E2E8F0 1px, transparent 1px),
+    linear-gradient(90deg, #E2E8F0 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #F1F5F9 !important;
+  font-family: inherit;
+}

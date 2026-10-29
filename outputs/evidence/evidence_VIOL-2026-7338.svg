@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1e293b"/>
+          <stop offset="100%" stop-color="#0f172a"/>
+        </linearGradient>
+      </defs>
+      <!-- Simulated Camera Frame -->
+      <rect width="960" height="540" fill="url(#bg)"/>
+      <rect x="40" y="40" width="880" height="460" rx="8" fill="#111827" stroke="#334155" stroke-width="2"/>
+      
+      <!-- Top Forensic Banner -->
+      <rect x="40" y="40" width="880" height="45" rx="8" fill="#DC2626"/>
+      <text x="60" y="68" fill="#FFFFFF" font-family="sans-serif" font-weight="bold" font-size="16">SMART TRAFFIC ENFORCEMENT - VIOLATION EVIDENCE RECORD</text>
+      <text x="900" y="68" fill="#FEE2E2" font-family="monospace" font-size="12" text-anchor="end">ID: EVD-2026-2407</text>
+
+      <!-- Target Vehicle Bounding Box -->
+      <rect x="320" y="160" width="320" height="240" fill="none" stroke="#EF4444" stroke-width="3" stroke-dasharray="6,4"/>
+      <rect x="320" y="130" width="180" height="28" fill="#EF4444"/>
+      <text x="328" y="149" fill="#FFFFFF" font-family="monospace" font-size="12" font-weight="bold">CAR #101 | SPEEDING</text>
+
+      <!-- License Plate Inset -->
+      <rect x="680" y="320" width="220" height="70" rx="6" fill="#F8FAFC" stroke="#0F172A" stroke-width="2"/>
+      <rect x="688" y="328" width="20" height="54" rx="2" fill="#1D4ED8"/>
+      <text x="698" y="360" fill="#FFFFFF" font-family="monospace" font-size="9" text-anchor="middle">IND</text>
+      <text x="800" y="364" fill="#0F172A" font-family="monospace" font-size="18" font-weight="bold" text-anchor="middle">HR 26 DQ 5555</text>
+
+      <!-- Overlay Telemetry HUD -->
+      <rect x="60" y="410" width="840" height="75" rx="6" fill="#030712" fill-opacity="0.85" stroke="#374151" stroke-width="1"/>
+      <text x="80" y="435" fill="#9CA3AF" font-family="monospace" font-size="11">TIMESTAMP: <tspan fill="#F3F4F6">2026-09-26T02:11:16.010Z</tspan></text>
+      <text x="80" y="455" fill="#9CA3AF" font-family="monospace" font-size="11">CAMERA: <tspan fill="#60A5FA">CAM-01 - Connaught Place Outer Circle North Gate, New Delhi</tspan></text>
+      <text x="80" y="475" fill="#9CA3AF" font-family="monospace" font-size="11">VIOLATION: <tspan fill="#F87171" font-weight="bold">SPEEDING</tspan> | SPEED: <tspan fill="#FCD34D">130 km/h</tspan> (LIMIT: 50 km/h)</text>
+      
+      <text x="880" y="455" fill="#10B981" font-family="monospace" font-size="12" font-weight="bold" text-anchor="end">CONFIDENCE: 96.0%</text>
+      <text x="880" y="475" fill="#9CA3AF" font-family="monospace" font-size="9" text-anchor="end">SECURE SHA-256 DIGITAL WATERMARK APPLIED</text>
+    </svg>

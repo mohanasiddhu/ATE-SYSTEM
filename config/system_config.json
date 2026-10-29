@@ -1,0 +1,49 @@
+{
+  "system": {
+    "name": "AI-Driven Smart Traffic Enforcement System",
+    "version": "2.4.0",
+    "environment": "production-ready",
+    "timezone": "UTC"
+  },
+  "detection": {
+    "models": {
+      "vehicle_detector": "yolov8n.pt",
+      "plate_detector": "yolov8n-license-plate.pt",
+      "ocr_engine": "LPRNet_CRNN",
+      "tracker": "ByteTrack"
+    },
+    "confidence_threshold": 0.85,
+    "iou_threshold": 0.45,
+    "max_lost_frames": 30,
+    "min_track_length": 3
+  },
+  "violation_rules": {
+    "speeding": {
+      "default_limit_kmh": 60,
+      "grace_margin_kmh": 5,
+      "base_fine": 1000
+    },
+    "red_light": {
+      "detection_zone_y": 0.65,
+      "base_fine": 1500
+    },
+    "stop_line": {
+      "detection_zone_y": 0.70,
+      "base_fine": 500
+    },
+    "no_helmet": {
+      "target_classes": ["motorcycle"],
+      "base_fine": 1000
+    },
+    "wrong_way": {
+      "expected_direction_degrees": 180,
+      "base_fine": 2000
+    }
+  },
+  "outputs": {
+    "evidence_watermark": true,
+    "sha256_audit_trail": true,
+    "save_plate_crop": true,
+    "retention_days": 90
+  }
+}

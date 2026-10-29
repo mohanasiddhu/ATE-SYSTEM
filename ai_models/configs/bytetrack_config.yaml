@@ -1,0 +1,14 @@
+# ByteTrack Multi-Object Tracking Configuration
+tracker_type: "ByteTrack"
+track_thresh: 0.50
+high_thresh: 0.60
+match_thresh: 0.80
+track_buffer: 30
+frame_rate: 30
+min_box_area: 100
+aspect_ratio_thresh: 2.5
+fuse_score: true
+nn_budget: 100
+kalman_filter:
+  std_weight_position: 0.05
+  std_weight_velocity: 0.00625

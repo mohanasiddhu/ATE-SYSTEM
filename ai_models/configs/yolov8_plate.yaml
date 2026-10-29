@@ -1,0 +1,22 @@
+# YOLOv8 License Plate Localization Configuration
+task: detect
+mode: train
+model: yolov8n-license-plate.pt
+data: ../datasets/data.yaml
+epochs: 150
+patience: 20
+batch: 64
+imgsz: 640
+save: true
+device: 0
+workers: 8
+optimizer: AdamW
+lr0: 0.001
+lrf: 0.01
+momentum: 0.937
+weight_decay: 0.0001
+warmup_epochs: 5.0
+box: 9.0
+cls: 1.0
+dfl: 2.0
+plots: true

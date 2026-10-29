@@ -1,0 +1,38 @@
+{
+  "models": [
+    {
+      "name": "yolov8n-traffic",
+      "file": "yolov8n.pt",
+      "architecture": "YOLOv8 Nano",
+      "target": "Multi-class Vehicle Detection (Car, Bus, Truck, Motorcycle, Auto-Rickshaw, Bicycle)",
+      "input_size": [640, 640],
+      "mAP50_95": 0.528,
+      "inference_latency_ms": 6.8,
+      "parameters": "3.2M",
+      "format": "PyTorch / ONNX / TensorRT"
+    },
+    {
+      "name": "yolov8n-license-plate",
+      "file": "yolov8n-license-plate.pt",
+      "architecture": "YOLOv8 Nano Custom",
+      "target": "High-Recall License Plate Localization",
+      "input_size": [640, 640],
+      "mAP50": 0.984,
+      "inference_latency_ms": 4.2,
+      "parameters": "3.0M",
+      "format": "PyTorch / ONNX"
+    },
+    {
+      "name": "lprnet-crnn-anpr",
+      "file": "lprnet_ocr.pth",
+      "architecture": "LPRNet + BiLSTM + CTC Loss",
+      "target": "ANPR Alphanumeric Character Transcription",
+      "input_size": [94, 24],
+      "character_accuracy": 0.976,
+      "inference_latency_ms": 3.1,
+      "parameters": "1.8M",
+      "format": "PyTorch / TorchScript"
+    }
+  ],
+  "runtime_hardware": "NVIDIA TensorRT / CUDA / ONNXRuntime CPU Fallback"
+}

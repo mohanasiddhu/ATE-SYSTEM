@@ -1,187 +1,107 @@
 # AI-Driven Smart Traffic Enforcement System
 
-An enterprise-grade, computer-vision powered traffic monitoring, Automated Number Plate Recognition (ANPR), and violation enforcement platform designed as a comprehensive academic final-year capstone project.
+An enterprise-grade, production-ready AI perception, tracking, ANPR (Automatic Number Plate Recognition), violation detection, and automated e-challan issuance platform.
 
 ---
 
-## 1. System Overview
+## 🏛️ Top-Level Project Architecture
 
-The **AI-Driven Smart Traffic Enforcement System** automates the end-to-end statutory traffic monitoring workflow:
-1. **Live Camera Ingestion**: Processes video feeds from roadside CCTV, IP/RTSP streams, or sample traffic recordings.
-2. **YOLO Vehicle Detection**: Detects and classifies multi-class vehicles (`car`, `bus`, `truck`, `motorcycle`, `bicycle`) with spatial bounding boxes and confidence intervals.
-3. **Vehicle Tracking & Speed Estimation**: Calculates continuous vehicle trajectories across frames to compute calibrated prototype speeds and detect overspeeding.
-4. **Traffic Signal & Stop-Line Enforcement**: Detects virtual stop-line crossings during RED signal phases.
-5. **Rider Safety (Helmet Detection)**: Classifies two-wheeler motorcycle operators for helmet compliance.
-6. **Automatic Number Plate Recognition (ANPR)**: Crops license plate regions, executes noise reduction/contrast preprocessing, and performs character recognition via OCR.
-7. **Human-in-the-Loop Review**: All AI detections start as `PENDING_REVIEW`. Authorized enforcement officers inspect cryptographic evidence cards before approving (`CONFIRMED`) or rejecting (`REJECTED`).
-8. **Simulated E-Challan & Payment Gateway**: Generates digital demo fines and simulates citizen online payment workflows with verifiable transaction IDs and receipts.
-9. **Interactive Geospatial Dashboard**: Displays real-time camera statuses, corridor traffic density, and High-Risk Zones with Leaflet maps.
-
----
-
-## 2. Real-World Limitation & Academic Ethics Disclaimer
-
-> **IMPORTANT**: This is an academic simulation prototype. It does **NOT** connect to actual government law enforcement databases (such as VAHAN/Sarathi/Parivahan) nor issue legally binding fines. All payment transactions (`TXN-DEMO-XXXX`) and penalty challans are strictly simulated demonstrations. The system strictly enforces human officer review before any candidate violation is marked confirmed.
-
----
-
-## 3. Technology Stack
-
-| Layer | Technologies |
-| :--- | :--- |
-| **Backend Framework** | Python 3.10+, FastAPI, Uvicorn (ASGI) |
-| **Database & ORM** | SQLite 3, SQLAlchemy 2.0 ORM |
-| **Data Validation** | Pydantic V2, Pydantic-Settings |
-| **Authentication** | JWT (JSON Web Tokens), OAuth2 Password Bearer, bcrypt / salted SHA-256 |
-| **Computer Vision** | OpenCV (cv2), Ultralytics YOLOv8, NumPy, Pillow (PIL) |
-| **ANPR / OCR** | EasyOCR / regex normalization pipeline |
-| **Frontend UI** | HTML5, Tailwind CSS, Vanilla JS / React SPA, Lucide Icons |
-| **Data Visualization** | Chart.js, HTML5 Canvas radar & vehicle tracker |
-| **Mapping Engine** | Leaflet.js, OpenStreetMap |
-| **AI Insights (Optional)**| Google Gemini 3.8 Flash SDK for natural language summaries |
-
----
-
-## 4. Architecture Diagram
-
-```text
-  Surveillance Camera / Video Feed / RTSP
-                   ↓
-      OpenCV Video Stream Ingestion
-                   ↓
-    YOLOv8 Multi-Class Object Detection
-                   ↓
-        Centroid / Trajectory Tracker
-                   ↓
-    Violation Inference Engine:
-    ├─ Speed Threshold Comparator
-    ├─ Virtual Stop-Line Collision
-    ├─ Signal Phase Correlator (RED/GREEN)
-    └─ Rider Helmet Classifier
-                   ↓
-    License Plate Region Cropper + Preprocessing
-                   ↓
-         EasyOCR / ANPR Engine
-                   ↓
-      Cryptographic Evidence Card Generator
-                   ↓
-     SQLite Database (Status: PENDING_REVIEW)
-                   ↓
-       Human Review by Traffic Officer
-      ┌────────────┴────────────┐
-      ▼                         ▼
-   REJECTED                 CONFIRMED
-                                ↓
-                      Mock E-Challan Generated
-                                ↓
-                      Citizen Demo Payment Gateway
-                                ↓
-                      Real-time Analytics & Audit Trail
+```
+AI-Traffic-Enforcement-System/
+├── frontend/             # All React UI code (components, pages, layouts, services, hooks, api)
+├── backend/              # All server-side code (routes, controllers, services, models, middleware)
+├── ai_models/            # YOLOv8 weights, model configs, OCR checkpoints, model registry
+├── datasets/             # Training datasets (raw, processed, train, val, test, data.yaml)
+├── database/             # Relational schema DDL, SQL migrations, seeds, connection layer
+├── detection/            # 12-stage perception pipeline (ByteTrack, Plate Localization, ANPR, Evidence)
+├── outputs/              # Generated evidence images, plate crops, exported reports, videos
+├── config/               # Environment variable examples, system parameters, traffic rules
+├── tests/                # Automated validation test suite (database, tracking, detection, API)
+├── docs/                 # Architecture, API, database, setup, training, and deployment docs
+└── scripts/              # Automation scripts for frontend, backend, fullstack, training, DB
 ```
 
 ---
 
-## 5. Folder Structure
+## ⚡ 12-Stage Detection & Enforcement Pipeline
 
-```text
-smart_traffic_enforcement/
-├── app/
-│   ├── main.py                  # FastAPI Application Entry Point
-│   ├── core/
-│   │   ├── config.py            # Pydantic Settings & Environment
-│   │   ├── security.py          # Password Hashing & JWT Handlers
-│   │   └── logging_config.py    # Structured Logging Engine
-│   ├── database/
-│   │   ├── database.py          # SQLAlchemy Session Factory
-│   │   ├── models.py            # User, Vehicle, Camera, Violation, Fine Models
-│   │   └── seed.py              # Baseline Demo Data Seeder
-│   ├── schemas/
-│   │   ├── auth.py              # Authentication Schemas
-│   │   └── violation.py         # Request/Response DTOs
-│   ├── api/
-│   │   ├── auth.py              # Login & Session Routes
-│   │   ├── dashboard.py         # KPI & Real-time Aggregation
-│   │   ├── violations.py        # Violation Query & Human Review Endpoints
-│   │   ├── vehicles.py          # ANPR Registry Search
-│   │   ├── cameras.py           # Camera Inventory CRUD
-│   │   ├── payments.py          # Simulated Fine Checkout & Receipts
-│   │   ├── analytics.py         # Hourly Volume & Risk Hotspots
-│   │   ├── reports.py           # CSV Export & Summaries
-│   │   ├── detections.py        # Computer Vision Live Ingestion
-│   │   └── health.py            # psutil Hardware & Memory Telemetry
-│   ├── services/
-│   │   ├── violation_service.py # Lifecycle & Review Logic
-│   │   ├── evidence_service.py  # PIL Watermarked Evidence Frames
-│   │   ├── payment_service.py   # Fake Payment Transaction Generator
-│   │   └── gemini_service.py    # Natural Language AI Explanations
-│   └── models/
-│       ├── yolo_model.py        # Ultralytics Wrapper with Simulation Fallback
-│       └── plate_model.py       # EasyOCR Wrapper with Synthetic ANPR
-├── data/
-│   ├── evidence/                # Generated timestamped evidence captures
-│   └── traffic_enforcement.db   # Local SQLite Database
-├── tests/
-│   └── test_api.py              # Pytest End-to-End Suite
-├── run.py                       # Root launcher script
-├── requirements.txt             # Python dependencies
-├── .env.example                 # Configuration template
-└── README.md                    # Documentation
+```
+Input Image / Video / Live Camera
+       ↓
+Stage 1: Input Frame Acquisition
+       ↓
+Stage 2: YOLOv8 Multi-Class Vehicle Detection
+       ↓
+Stage 3: ByteTrack Trajectory Tracking (No stale bounding boxes; immediate out-of-frame eviction)
+       ↓
+Stage 4: YOLOv8 License Plate Localization
+       ↓
+Stage 5: License Plate Extraction & Crop (saved in outputs/crops/)
+       ↓
+Stage 6: LPRNet / CRNN Alphanumeric OCR & Indian HSRP regex verification
+       ↓
+Stage 7: Vehicle & Plate Spatial Association (IoU & Containment)
+       ↓
+Stage 8: Violation Classification (Speeding, Red Light, Helmet, Stop Line)
+       ↓
+Stage 9: Confidence Validation (>= 0.85 threshold to prevent false positives)
+       ↓
+Stage 10: Court-Admissible Evidence Generation (SHA-256 digital watermark in outputs/evidence/)
+       ↓
+Stage 11: Relational Database Record (Violations, Challans, Evidence, Telemetry)
+       ↓
+Stage 12: Backend REST & Stream Dispatch → Real-Time Frontend Command Center
 ```
 
 ---
 
-## 6. Installation & Execution Guide
+## 🚀 Quickstart Commands
 
-### Step 1: Create and Activate Virtual Environment
+### 1. Run Full-Stack System (Port 3000)
 ```bash
-# macOS / Linux
-python3 -m venv venv
-source venv/bin/activate
-
-# Windows
-python -m venv venv
-venv\Scripts\activate
+npm run dev
+# OR: bash scripts/run_fullstack.sh
 ```
+Starts Express REST backend with Vite React UI on `http://localhost:3000`.
 
-### Step 2: Install Dependencies
+### 2. Run Automated Verification Tests
 ```bash
-pip install -r requirements.txt
+npx tsx tests/run_all_tests.ts
 ```
+Executes complete automated validation across Database, ByteTrack, Detection Pipeline, Evidence Vault, and all REST endpoints.
 
-### Step 3: Configure Environment
+### 3. Run Frontend Only
 ```bash
-cp .env.example .env
+bash scripts/run_frontend.sh
 ```
 
-### Step 4: Seed Initial Database
+### 4. Run Backend Only
 ```bash
-python -m app.database.seed
+bash scripts/run_backend.sh
 ```
 
-### Step 5: Start the Enforcement Server
+### 5. Train YOLOv8 Model
 ```bash
-python run.py
-# Or directly via Uvicorn:
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+bash scripts/train_yolo.sh
 ```
 
-Interactive OpenAPI Swagger UI is available at:
-👉 `http://localhost:8000/docs`
+### 6. Run AI Sample Inference
+```bash
+python3 scripts/infer_sample.py
+```
+
+### 7. Initialize / Seed Database
+```bash
+bash scripts/setup_db.sh
+```
 
 ---
 
-## 7. Demo Access Credentials
-
-| Role | Username | Password | Permissions |
-| :--- | :--- | :--- | :--- |
-| **Chief Admin** | `admin` | `admin123` | Full administrative control, cameras CRUD, audit logs, system parameters |
-| **Traffic Officer** | `officer` | `operator123` | Live monitoring, review violations, approve/reject, generate fines |
-| **Reviewer / Viewer** | `reviewer` | `reviewer123` | Read-only inspection of dashboard metrics, analytics, and reports |
-
----
-
-## 8. Standards & Compliance References
-
-- **ISO 39001**: Road Traffic Safety (RTS) management systems guidance.
-- **ISO 22320**: Emergency management guidelines for incident prevention and response.
-- **GDPR / DPDP Principles**: Role-based access control, cryptographic password hashing, data retention policies, and immutable audit logging.
+## 📋 Comprehensive Documentation
+- [System Architecture](docs/architecture.md)
+- [REST API Reference](docs/api_documentation.md)
+- [Database Schema & ER Model](docs/database_schema.md)
+- [Setup Instructions](docs/setup_instructions.md)
+- [Model Training & Dataset Preparation](docs/model_training.md)
+- [Testing Instructions](docs/testing_instructions.md)
+- [Production Deployment Guide](docs/deployment_instructions.md)
